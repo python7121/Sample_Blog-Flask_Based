@@ -68,7 +68,7 @@ db.create_all()
 def admin_only(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if current_user.id != os.environ.get("Admin"):
+        if current_user.id != int(os.environ.get("Admin")):
             return abort(403)
 
         return f(*args, **kwargs)
